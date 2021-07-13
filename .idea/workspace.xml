@@ -5,26 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44934f3a-4f2e-4c85-9103-fc4d5da1cd8c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AveragePopulation.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImmigrationAndMigration.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PopulationDensity.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/DataProvinceInVietNam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/DataProvinceInVietNam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/AveragePopulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/AveragePopulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/ImmigrationAndMigration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/ImmigrationAndMigration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/impl/AveragePopulationImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/impl/AveragePopulationImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/impl/ImmigrationAndMigrationImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/impl/ImmigrationAndMigrationImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/repository/impl/PopulationDensityImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/repository/impl/PopulationDensityImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/impl/GetAllDataOfJSONImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/impl/GetAllDataOfJSONImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/entity/DataProvinceInVietNam.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/entity/DataProvinceInVietNam.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/repository/impl/AveragePopulationImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/repository/impl/AveragePopulationImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/repository/impl/ImmigrationAndMigrationImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/repository/impl/ImmigrationAndMigrationImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/repository/impl/PopulationDensityImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/repository/impl/PopulationDensityImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/service/impl/GetAllDataOfJSONImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/impl/GetAllDataOfJSONImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Application.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +66,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1626150193525</updated>
-      <workItem from="1626150195479" duration="1414000" />
+      <workItem from="1626150195479" duration="1649000" />
     </task>
     <servers />
   </component>
