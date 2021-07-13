@@ -1,6 +1,5 @@
 package repository.impl;
 
-import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import repository.AveragePopulation;
@@ -8,7 +7,7 @@ import repository.AveragePopulation;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
+import org.json.simple.JSONObject;
 public class AveragePopulationImpl implements AveragePopulation {
     @Override
     public JSONObject getAllAveragePopulation() {

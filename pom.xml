@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>ProjectMAS291IS1404</artifactId>
+    <artifactId>ProjectMas291IS1404</artifactId>
     <version>1.0-SNAPSHOT</version>
     <properties>
         <maven.compiler.source>16</maven.compiler.source>
@@ -23,4 +23,21 @@
             <version>1.1.1</version>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>src.main.java.Application</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

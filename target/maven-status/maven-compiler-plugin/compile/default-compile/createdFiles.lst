@@ -1,0 +1,13 @@
+entity\DataProvinceInVietNam.class
+repository\impl\AveragePopulationImpl.class
+repository\AveragePopulation.class
+dto\DTOImmigrationAndMigration.class
+repository\impl\ImmigrationAndMigrationImpl.class
+dto\DTOPopulationDensity.class
+service\GetAllDataOfJSON.class
+repository\PopulationDensity.class
+service\impl\GetAllDataOfJSONImpl.class
+repository\ImmigrationAndMigration.class
+dto\DTOAveragePopulation.class
+Application.class
+repository\impl\PopulationDensityImpl.class

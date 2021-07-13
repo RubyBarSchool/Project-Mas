@@ -1,7 +1,5 @@
 package entity;
 
-
-
 public class DataProvinceInVietNam {
     private String name;
     private int year;

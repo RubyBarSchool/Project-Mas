@@ -28,8 +28,6 @@ public class GetAllDataOfJSONImpl implements GetAllDataOfJSON {
         this.averagePopulation = new AveragePopulationImpl();
         this.populationDensity = new PopulationDensityImpl();
     }
-
-
     @Override
     public List<DataProvinceInVietNam> getAll() {
         try {
