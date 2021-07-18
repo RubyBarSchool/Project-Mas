@@ -1,6 +1,6 @@
 package vo;
 
-public class DemoClass {
+public class DemoClass implements Comparable<DemoClass>{
     private String name;
     private Double tbPopulation;
 
@@ -19,4 +19,26 @@ public class DemoClass {
     public void setTbPopulation(Double tbPopulation) {
         this.tbPopulation = tbPopulation;
     }
+
+    @Override
+    public String toString() {
+        return "DemoClass{" +
+                "name='" + name + '\'' +
+                ", tbPopulation=" + tbPopulation +
+                '}';
+    }
+
+    @Override
+    public int compareTo(DemoClass o) {
+        if(o.getTbPopulation()>this.getTbPopulation()){
+            return -1;
+        }
+        else  if(o.getTbPopulation()<this.getTbPopulation()){
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
 }
+

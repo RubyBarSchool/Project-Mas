@@ -22,6 +22,7 @@ public class LineChartImpl implements LineChart {
         RefineryUtilities.centerFrameOnScreen( lineChart );
         lineChart.setVisible( true );
     }
+
     private CategoryDataset formatData(List<DataProvinceInVietNam> data) {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
         dataset.addValue( 21000 , "Ha Noi" , "2016" );

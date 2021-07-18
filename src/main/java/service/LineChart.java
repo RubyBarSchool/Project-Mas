@@ -10,4 +10,5 @@ public interface LineChart {
     void demoLineChar(List<DataProvinceInVietNam> data, String applicationTitle, String chartTitle , String dataX, String dataY,
                      PlotOrientation plotOrientation, Boolean legend, Boolean tolltips, Boolean urls,
                      int width, int height);
+
 }
