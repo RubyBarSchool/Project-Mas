@@ -79,18 +79,38 @@ public class BarChartImpl implements BarChart {
         List<Integer> listPercentOfCity = new ArrayList<>();
         List<PercentPopulation> listPercent = new ArrayList<>();
         PercentPopulation percentPopulation = null;
+        List<Integer> listRange = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
             int percentageOfCity = (int) Math.floor(data.get(i).getTbAveragePopulationCity() / data.get(i).getTbAveragePopulation() * 100);
-            if (!listPercentOfCity.contains(percentageOfCity)) {
+            if (!listRange.contains(percentageOfCity)) {
+                listRange.add(percentageOfCity);
+            }
+        }
+        Collections.sort(listRange);
+        int min = listRange.get(0).intValue();
+        int max = Collections.max(listRange);
+        int kc = (max - min) / 10;
+        for (int j = 0; j <= 11; j++) {
+            int range = min + kc * j;
+            if (!listPercentOfCity.contains(range)) {
+                listPercentOfCity.add(range);
                 percentPopulation = new PercentPopulation();
-                listPercentOfCity.add(percentageOfCity);
-                percentPopulation.setPercentPolulation(percentageOfCity);
-                percentPopulation.setRepeate(1);
+                percentPopulation.setPercentPolulation(range);
                 listPercent.add(percentPopulation);
-            } else {
-                for (PercentPopulation per : listPercent) {
-                    if (per.getPercentPolulation() == percentageOfCity) {
-                        per.setRepeate(per.getRepeate() + 1);
+            }
+        }
+        for (int j = 0; j < listPercent.size() ; j++) {
+            for (int i = 0; i < data.size(); i++) {
+                int percentageOfCity = (int) Math.floor(data.get(i).getTbAveragePopulationCity() / data.get(i).getTbAveragePopulation() * 100);
+
+                if (j == 0) {
+                    if (percentageOfCity <= listPercent.get(j).getPercentPolulation()) {
+                        listPercent.get(j).setRepeate(listPercent.get(j).getRepeate() + 1);
+                    }
+                } else {
+                    if (percentageOfCity < listPercent.get(j).getPercentPolulation() &&
+                            percentageOfCity >= listPercent.get(j - 1).getPercentPolulation()) {
+                        listPercent.get(j).setRepeate(listPercent.get(j).getRepeate() + 1);
                     }
                 }
             }
@@ -107,22 +127,44 @@ public class BarChartImpl implements BarChart {
         List<Integer> listPercentOfCity = new ArrayList<>();
         List<PercentPopulation> listPercent = new ArrayList<>();
         PercentPopulation percentPopulation = null;
+
+        List<Integer> listRange = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
             int percentageOfCountrySide = (int) Math.floor(data.get(i).getTbAveragePopulationCountryside() / data.get(i).getTbAveragePopulation() * 100);
-            if (!listPercentOfCity.contains(percentageOfCountrySide)) {
+            if (!listRange.contains(percentageOfCountrySide)) {
+                listRange.add(percentageOfCountrySide);
+            }
+        }
+        Collections.sort(listRange);
+        int min = listRange.get(0).intValue();
+        int max = Collections.max(listRange);
+        int kc = (max - min) / 10;
+        for (int j = 0; j <= 11; j++) {
+            int range = min + kc * j;
+            if (!listPercentOfCity.contains(range)) {
+                listPercentOfCity.add(range);
                 percentPopulation = new PercentPopulation();
-                listPercentOfCity.add(percentageOfCountrySide);
-                percentPopulation.setPercentPolulation(percentageOfCountrySide);
-                percentPopulation.setRepeate(1);
+                percentPopulation.setPercentPolulation(range);
                 listPercent.add(percentPopulation);
-            } else {
-                for (PercentPopulation per : listPercent) {
-                    if (per.getPercentPolulation() == percentageOfCountrySide) {
-                        per.setRepeate(per.getRepeate() + 1);
+            }
+        }
+        for (int j = 0; j < listPercent.size() ; j++) {
+            for (int i = 0; i < data.size(); i++) {
+                int percentageOfCountrySide = (int) Math.floor(data.get(i).getTbAveragePopulationCountryside() / data.get(i).getTbAveragePopulation() * 100);
+
+                if (j == 0) {
+                    if (percentageOfCountrySide <= listPercent.get(j).getPercentPolulation()) {
+                        listPercent.get(j).setRepeate(listPercent.get(j).getRepeate() + 1);
+                    }
+                } else {
+                    if (percentageOfCountrySide < listPercent.get(j).getPercentPolulation() &&
+                            percentageOfCountrySide >= listPercent.get(j - 1).getPercentPolulation()) {
+                        listPercent.get(j).setRepeate(listPercent.get(j).getRepeate() + 1);
                     }
                 }
             }
         }
+
         Collections.sort(listPercent);
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (PercentPopulation per : listPercent) {
@@ -387,15 +429,13 @@ public class BarChartImpl implements BarChart {
     private CategoryDataset formatDataMigrationRate(List<DataProvinceInVietNam> data) {
         List<String> listCity = new ArrayList<>();
         List<DemoClass> listDistri = new ArrayList<>();
-        List<Distribution> listResult = new ArrayList<>();
-        Distribution d = new Distribution();
+        List<Double> listRange = new ArrayList<>();
+        List<Integer> listCou = new ArrayList<>();
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         //city
         for (int i = 0; i < data.size(); i++) {
             if (!listCity.contains(data.get(i).getName()) && data.get(i).getCheckCountry() == false&& data.get(i).getMigration()!=0.0) {
                 listCity.add(data.get(i).getName());
-
-
             }
         }
         // av
@@ -414,52 +454,45 @@ public class BarChartImpl implements BarChart {
             objDis.setName(listCity.get(j));
             objDis.setTbPopulation(Math.round(av * 10.0) / 10.0);
             listDistri.add(objDis);//city,av
-
-
         }
         Collections.sort(listDistri);
-
-        for (int i = 0; i < listDistri.size(); i++) {
-
-            int demListResult=0;
-            int count =0;
-            Double value =listDistri.get(i).getTbPopulation();
-            //check exit value in result list
-
-            for(int index=0;index<listResult.size();index++){
-                if(listResult.get(index).getValue().doubleValue()==value.doubleValue()){
-                    demListResult++;
-                }
-            }
-            if(demListResult==0){
-                for(int j=0;j<listDistri.size();j++){
-                    if(listDistri.get(j).getTbPopulation().doubleValue()== value.doubleValue()){
-                        count++;
+        double min = listDistri.get(0).getTbPopulation().doubleValue();
+        double max = listDistri.get(listDistri.size()-1).getTbPopulation().doubleValue();
+        double kc = 1.2;
+        for(int i=0;i<=9;i++){
+            listRange.add((Math.round((min+kc*i) * 10.0) / 10.0));
+            listCou.add(0);
+        }
+        for(int j=0 ;j<listRange.size();j++){
+            for(int i = 0;i<listDistri.size();i++){
+                if(j==0){
+                    if(listDistri.get(i).getTbPopulation().doubleValue()<=listRange.get(j).doubleValue()){
+                        listCou.set(j,listCou.get(j)+1);
+                    }
+                }else {
+                    if(listDistri.get(i).getTbPopulation().doubleValue()<=listRange.get(j).doubleValue()
+                            &&listDistri.get(i).getTbPopulation().doubleValue()>listRange.get(j-1).doubleValue()){
+                        listCou.set(j,listCou.get(j)+1);
                     }
                 }
-
-
-                Distribution ds = new Distribution();
-                ds.setCount(count);
-                ds.setValue(value);
-                listResult.add(ds);
-
-                dataset.addValue(count,value+"","");
             }
+        }
+        for (int i = 0; i < listRange.size(); i++) {
+            dataset.addValue(listCou.get(i), "Migration Rate",listRange.get(i).doubleValue() + "" );
         }
         return dataset;
     }
     private CategoryDataset formatDataIMMigrationRate(List<DataProvinceInVietNam> data) {
         List<String> listCity = new ArrayList<>();
         List<DemoClass> listDistri = new ArrayList<>();
+        List<Double> listRange = new ArrayList<>();
+        List<Integer> listCou = new ArrayList<>();
         List<Distribution> listResult = new ArrayList<>();
-        Distribution d = new Distribution();
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         //city
         for (int i = 0; i < data.size(); i++) {
             if (!listCity.contains(data.get(i).getName()) && data.get(i).getCheckCountry() == false&& data.get(i).getMigration()!=0.0) {
                 listCity.add(data.get(i).getName());
-
             }
         }
         // av
@@ -478,38 +511,32 @@ public class BarChartImpl implements BarChart {
             objDis.setName(listCity.get(j));
             objDis.setTbPopulation(Math.round(av * 10.0) / 10.0);
             listDistri.add(objDis);//city,av
-
-
         }
         Collections.sort(listDistri);
+        double min = listDistri.get(0).getTbPopulation().doubleValue();
+        double max = listDistri.get(listDistri.size()-1).getTbPopulation().doubleValue();
+        double kc = 6;
 
-        for (int i = 0; i < listDistri.size(); i++) {
-
-            int demListResult=0;
-            int count =0;
-            Double value =listDistri.get(i).getTbPopulation();
-            //check exit value in result list
-
-            for(int index=0;index<listResult.size();index++){
-                if(listResult.get(index).getValue().doubleValue()==value.doubleValue()){
-                    demListResult++;
-                }
-            }
-            if(demListResult==0){
-                for(int j=0;j<listDistri.size();j++){
-                    if(listDistri.get(j).getTbPopulation().doubleValue()== value.doubleValue()){
-                        count++;
+        for(int i=0;i<=9;i++){
+            listRange.add((Math.round((min+kc*i) * 10.0) / 10.0));
+            listCou.add(0);
+        }
+        for(int j=0 ;j<listRange.size();j++){
+            for(int i = 0;i<listDistri.size();i++){
+                if(j==0){
+                    if(listDistri.get(i).getTbPopulation().doubleValue()<=listRange.get(j).doubleValue()){
+                        listCou.set(j,listCou.get(j)+1);
+                    }
+                }else {
+                    if(listDistri.get(i).getTbPopulation().doubleValue()<=listRange.get(j).doubleValue()
+                            &&listDistri.get(i).getTbPopulation().doubleValue()>listRange.get(j-1).doubleValue()){
+                        listCou.set(j,listCou.get(j)+1);
                     }
                 }
-
-
-                Distribution ds = new Distribution();
-                ds.setCount(count);
-                ds.setValue(value);
-                listResult.add(ds);
-
-                dataset.addValue(count,value+"","");
             }
+        }
+        for (int i = 0; i < listRange.size(); i++) {
+            dataset.addValue(listCou.get(i), "Immigration Rate",listRange.get(i).doubleValue() + "" );
         }
         return dataset;
     }
@@ -597,57 +624,60 @@ public class BarChartImpl implements BarChart {
     private CategoryDataset formatData3(List<DataProvinceInVietNam> data) {
         List<String> listCity = new ArrayList<>();
         List<DistributionHA> listDistri = new ArrayList<>();
-        List<DataProvinceInVietNam> cityData = new ArrayList<>();
-        List<DemoClassHA> listResult = new ArrayList<>();
         final DefaultCategoryDataset dataset =
                 new DefaultCategoryDataset();
 
         for (int i = 0; i < data.size(); i++) {
-            if (!listCity.contains(data.get(i).getName()) && data.get(i).getCheckCountry() == false) {
+            if (!listCity.contains(data.get(i).getName()) && data.get(i).getCheckCountry() == false && !data.get(i).getName().equals("Hà Tây")) {
                 listCity.add(data.get(i).getName());
             }
         }
 
-        for(int j=0;j<listCity.size();j++ ){
-            double citySum=0;
-            int count =0;
+        for (int j = 0; j < listCity.size(); j++) {
+            double citySum = 0;
+            int count = 0;
             double ave = 0;
-            for(int i=0; i<data.size();i++){
-                if(data.get(i).getName().equals(listCity.get(j))&&data.get(i).getPopulationDensity()!=0.0){
-                    citySum+=data.get(i).getPopulationDensity();
+            for (int i = 0; i < data.size(); i++) {
+                if (data.get(i).getName().equals(listCity.get(j)) &&data.get(i).getPopulationDensity()!=0.0) {
+                    citySum += data.get(i).getPopulationDensity();
                     count++;
                 }
             }
-            ave = citySum/count;
+            ave = citySum / count;
             DistributionHA ds = new DistributionHA();
             ds.setAve(Math.round(ave * 10.0) / 10.0);
             ds.setName(listCity.get(j));
             listDistri.add(ds);
         }
         Collections.sort(listDistri);
-        for (int i = 0; i < listDistri.size(); i++) {
-            int demListResult=0;
-            int count =0;
-            Double value =listDistri.get(i).getAve();
-            for(int index=0;index<listResult.size();index++){
-                if(listResult.get(index).getValueDensity().doubleValue()==value.doubleValue()){
-                    demListResult++;
-                }
-            }
-            if(demListResult==0){
-                for(int j=0;j<listDistri.size();j++){
-                    if(listDistri.get(j).getAve().doubleValue()== value.doubleValue()){
-                        count++;
+
+        int min = listDistri.get(0).getAve().intValue();
+        int max = Collections.max(listDistri).getAve().intValue();
+
+        int kc = (max - min) / 9;
+        List<Integer> list = new ArrayList<>();
+        List<Integer> listCou = new ArrayList<>();
+        for (int i = 0; i <= 10; i++) {
+            list.add(min + kc * i);
+            listCou.add(0);
+        }
+        for (int j = 0; j < list.size(); j++) {
+            for (int i = 0; i < listDistri.size(); i++) {
+                if (j == 0) {
+                    if (listDistri.get(i).getAve() <= list.get(j)) {
+                        listCou.set(j, listCou.get(j) + 1);
+                    }
+                } else {
+                    if (listDistri.get(i).getAve() > list.get(j) && listDistri.get(i).getAve() >= list.get(j - 1)) {
+                        listCou.set(j, listCou.get(j) + 1);
                     }
                 }
-                DemoClassHA ds = new DemoClassHA();
-                ds.setCount(count);
-                ds.setValueDensity(value);
-                listResult.add(ds);
-                dataset.addValue(count,value+"","");
             }
         }
 
+        for (int i = 0; i < list.size(); i++) {
+            dataset.addValue(listCou.get(i), "Population Density", list.get(i) + "");
+        }
         return dataset;
     }
 }

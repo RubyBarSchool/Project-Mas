@@ -23,6 +23,7 @@ public class LogicChartDataImpl implements LogicChartData {
         List<Double> listPopulationDensity = new ArrayList<>();
         List<Double> listImmigration = new ArrayList<>();
         List<Double> listMigration = new ArrayList<>();
+        // add data in list
         for (DataProvinceInVietNam dataProvinceInVietNam : data){
             if((double) dataProvinceInVietNam.getYear() !=0){
                 listYear.add((double) dataProvinceInVietNam.getYear());
@@ -49,6 +50,7 @@ public class LogicChartDataImpl implements LogicChartData {
                 listMigration.add(dataProvinceInVietNam.getMigration());
             }
         }
+        // sort theo chieu tang dan de làm q1 q2 q3
         Collections.sort(listYear);
         Collections.sort(listAveragePopulation);
         Collections.sort(listAveragePopulationCity);
@@ -57,6 +59,7 @@ public class LogicChartDataImpl implements LogicChartData {
         Collections.sort(listPopulationDensity);
         Collections.sort(listImmigration);
         Collections.sort(listMigration);
+
         List<Double> dataShow = new ArrayList<>();
         // add count
         dataShow.add((double) listYear.size());
@@ -138,6 +141,7 @@ public class LogicChartDataImpl implements LogicChartData {
         dataShow.add(listPopulationDensity.get(listPopulationDensity.size()-1));
         dataShow.add(listImmigration.get(listImmigration.size()-1));
         dataShow.add(listMigration.get(listMigration.size()-1));
+
         System.out.println("                              "+"Year                          "+
                 "AveragePopulation             "+"AveragePopulationCity         "+"AveragePopulationCountryside  "
                 +"Acreage                       "+"PopulationDensity             "+"Immigration                   "+"Migration                     ");
@@ -216,7 +220,6 @@ public class LogicChartDataImpl implements LogicChartData {
             }
         }.reversed());
         List<String> names = new ArrayList<>();
-
         System.out.println("Name ---------- Population\n");
         for (int i = 0; i < dataProvinceInVietNams.size(); i++) {
             if (i < 10 || i >= dataProvinceInVietNams.size() - 10) {
@@ -251,14 +254,11 @@ public class LogicChartDataImpl implements LogicChartData {
         }
         allProviceAvePopulationsSample.add(allProviceAvePopulationSample);
         allProviceAvePopulationsSample.remove(0);
-
         allProviceAvePopulations.add(allProviceAvePopulation);
         allProviceAvePopulations.remove(0);
-
         for (AllProviceAvePopulation allProviceAvePopulation1 : allProviceAvePopulationsSample) {
             allProviceAvePopulation1.setTotal(allProviceAvePopulation1.getTotal() / allProviceAvePopulationSample.getCount());
         }
-
         for (AllProviceAvePopulation allProviceAvePopulation1 : allProviceAvePopulations) {
             allProviceAvePopulation1.setTotal(allProviceAvePopulation1.getTotal() / allProviceAvePopulation1.getCount());
         }
@@ -303,14 +303,11 @@ public class LogicChartDataImpl implements LogicChartData {
         }
         allProviceAvePopulationsSample.add(allProviceAvePopulationSample);
         allProviceAvePopulationsSample.remove(0);
-
         allProviceAvePopulations.add(allProviceAvePopulation);
         allProviceAvePopulations.remove(0);
-
         for (AllProviceAvePopulation allProviceAvePopulation1 : allProviceAvePopulationsSample) {
             allProviceAvePopulation1.setTotal(allProviceAvePopulation1.getTotal() / allProviceAvePopulationSample.getCount());
         }
-
         for (AllProviceAvePopulation allProviceAvePopulation1 : allProviceAvePopulations) {
             allProviceAvePopulation1.setTotal(allProviceAvePopulation1.getTotal() / allProviceAvePopulation1.getCount());
         }
@@ -480,8 +477,8 @@ public class LogicChartDataImpl implements LogicChartData {
                 count++;
             }
         }
-        // 95% = (1-a)  za
-        Double z_score = 1.64;
+        // 95% = (1-a)  za/2
+        Double z_score = 1.96;
         System.out.println("Z_SCROE: " + z_score);
         int n = dataProvinceInVietNams.size();
         System.out.println("n of sample: " + n);
@@ -518,21 +515,21 @@ public class LogicChartDataImpl implements LogicChartData {
                 countHCM++;
             }
         }
-        // 95% za/2
+        // 95% za
         System.out.println("H0: p1 = p2");
         System.out.println("H1: p1 > p2");
-        Double z_score = 1.96;
+        Double z_score = 1.64;
         System.out.println("Z_SCROE: " + z_score);
         int n = dataProvinceInVietNams.size();
         System.out.println("n of sample Ha Noi: " + n);
         int nhcm = dataProvinceInVietNams.size();
         System.out.println("n of sample Ho Chi Minh: " + nhcm);
         double proportion_sample = count * 1.0 / n;
-        System.out.println("proportion of observations sample: " + proportion_sample);
+        System.out.println("proportion of observations sample HN: " + proportion_sample);
         double proportion_sample_hcm = countHCM * 1.0 / nhcm;
-        System.out.println("proportion of observations sample: " + proportion_sample_hcm);
+        System.out.println("proportion of observations sample HCM: " + proportion_sample_hcm);
         double proportion = (count + countHCM) * 1.0 / (n + nhcm);
-        System.out.println("proportion of observations sample: " + proportion);
+        System.out.println("proportion of observations sample HCM and HN: " + proportion);
         double testStatic = (proportion_sample_hcm - proportion_sample) / Math.sqrt(proportion * (1 - proportion) * ((1.0 / n) + (1.0 / nhcm)));
         System.out.println("z0 = " + testStatic);
         System.out.println("Since z0 > z_score ,corect rejection creiteria then reject the null hypothesis");
